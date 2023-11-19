@@ -1,0 +1,17 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'spec/**/*'
+    - 'vendor/**/*'
+    - 'lib/tasks/**/*'
+    - 'lib/patches/**/*'
+    - 'lib/validators/**/*'
+    - 'lib/validators/**/*'
+
+Style/Documentation:
+  Enabled: false

@@ -19,6 +19,10 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'associations' do
+    it { is_expected.to belong_to(:app).inverse_of(:users) }
+  end
+
   describe 'validations' do
     context 'presence' do
       it { is_expected.to validate_presence_of(:name) }

@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_19_223722) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_19_232322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apps", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "dg_app_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dg_app_id"], name: "index_apps_on_dg_app_id", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -24,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_223722) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "app_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["fractal_id"], name: "index_users_on_fractal_id", unique: true
     t.index ["token_dg"], name: "index_users_on_token_dg", unique: true

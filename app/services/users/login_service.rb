@@ -27,10 +27,12 @@ module Users
         unit = user_unit(@dg_user[:units])
         return unit_error(unit) unless unit.present?
 
+        status_dg = @dg_user[:active] ? :active : :blocked
+
         user = User.create(name: @dg_user[:name], email: @dg_user[:email],
-                           fractal_id: @dg_user[:fractal_id],
+                           fractal_id: @dg_user[:fractal_id], status: status_dg,
                            token_dg: @token, photo_url: @dg_user[:photo_url],
-                           unit_dg: unit.unit_dg)
+                           app_id: unit.unit_dg)
 
         Auth::TokenProvider.issue_token({ email: user.email, fractal_id: user.fractal_id })
       end
